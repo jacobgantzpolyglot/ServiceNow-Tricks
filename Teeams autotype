@@ -1,0 +1,28 @@
+// ==UserScript==
+// @name         Teams autotype
+// @namespace    http://tampermonkey.net/
+// @version      0.1
+// @description  try to take over the world!
+// @author       You
+// @match        https://gov.teams.microsoft.us/*
+// @icon         https://www.google.com/s2/favicons?sz=64&domain=microsoft.us
+// @grant        none
+// ==/UserScript==
+
+(function() {
+    'use strict';
+    var now = new Date();
+
+    var millisTill10 = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 4, 4, 0, 0) - now;
+    if (millisTill10 < 0) {
+        millisTill10 += 86400000;
+    }
+    setTimeout(function(){
+        document.getElementsByClassName("cke_textarea_inline cke_editable cke_editable_inline cke_contents_ltr")[0].innerHTML="8AM call for CS1349868 approx 1hr";
+        document.getElementsByClassName("ui-toolbar__itemicon")[31].click();
+        //setTimeout(function(){document.getElementById('select-max').click();}, 3000);
+    }
+               , millisTill10);
+    // Your code here...
+    // Your code here...
+})();
