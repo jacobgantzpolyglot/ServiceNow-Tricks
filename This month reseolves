@@ -1,0 +1,33 @@
+// ==UserScript==
+// @name         This month
+// @namespace    http://tampermonkey.net/
+// @version      0.1
+// @description  try to take over the world!
+// @author       You
+// @match        https://ironbow.servicenowservices.com/sn_customerservice_case_list.do?*20month*
+// @icon         https://www.google.com/s2/favicons?domain=servicenowservices.com
+// @grant        none
+// ==/UserScript==
+
+(function() {
+    'use strict';
+//5Esys_created_onONThis
+    'use strict';
+    var hiddenField = document.querySelector("[id*='_total_rows']");
+console.log(hiddenField.innerHTML);
+
+var today = new Date();
+var dd = String(today.getDate()).padStart(2, '0');
+var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+var yyyy = today.getFullYear();
+
+today = dd;
+
+
+
+var hf = document.querySelector("[id*='_last_row']");
+        hf.innerHTML = (Math.round(hiddenField.innerHTML / 1 * 100) / 100).toFixed(2);
+
+    // Your code here...
+    // Your code here...
+})();
