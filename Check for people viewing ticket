@@ -1,0 +1,63 @@
+// ==UserScript==
+// @name         Check for people viewing ticket
+// @namespace    http://tampermonkey.net/
+// @version      0.1
+// @description  try to take over the world!
+// @author       You
+// @match        https://ironbow.servicenowservices.com/*sysparm_view=case&sysparm_record_target*
+// @icon         https://www.google.com/s2/favicons?sz=64&domain=servicenowservices.com
+// @grant        none
+// ==/UserScript==
+
+(function() {
+    'use strict';
+    var viewingUser;
+    //var previousViewing="";
+    var notificationSent=false;
+    var viewing=false;
+    Notification.requestPermission();
+    if(viewing==false){
+        setInterval( function() { checkView(); }, 6000);
+    }
+    else{
+        setInterval( function() { checkView(); }, 12000);
+    }
+    function checkView(){
+        if(document.getElementsByClassName("avatar avatar-md sn-popover-presence sn-popover-basic ng-binding")[0].innerHTML>0){
+            viewingUser=document.getElementsByClassName("sub-avatar")[0].ariaLabel;
+            console.log("someone is viewing");
+            viewing=true;
+            //var g=document.getElementsByClassName("sub-avatar")[0].ariaLabel;
+            //if(viewingUser!=previousViewing&&viewing){
+                //console.log(document.getElementsByClassName("ng-binding ng-scope")[0].innerHTML+" is viewing your ticket");
+                console.log(document.getElementsByClassName("sub-avatar")[0].innerHTML+" is viewing your ticket");
+                if(!notificationSent){
+                    var notification = new Notification(viewingUser+' ticket', {
+                        body: "someone is taking a peeksie weeksie!",
+                    });
+                    notificationSent=true;
+                }
+                function sleep(ms) {
+                    return new Promise(res => setTimeout(res, ms));
+                }
+
+                let myAsyncFunc = async function() {
+                    console.log('Sleeping');
+                    await sleep(12000);
+                    console.log('Done');
+                }
+
+                myAsyncFunc();
+                // setTimeout(function() {},120000); //pause 2 mins before continuing
+                //previousViewing=document.getElementsByClassName("sub-avatar")[0].ariaLabel;
+                //previousViewing=viewingUser;
+            //}
+        }
+        else{
+            //console.log("nobody is viewing");
+            notificationSent=false;
+            viewing=false;
+        }
+    }
+    // Your code here...
+})();
