@@ -1,0 +1,20 @@
+// ==UserScript==
+// @name         Get Rid of color buttons
+// @version      0.1
+// @description  turn buttons back to gray
+// @author       Jacob Gantz
+// @match        https://ironbow.servicenowservices.com/sn_customerservice_case.do?sysparm_nostack=true&sysparm_domain_scope=record*
+// @match        https://ironbow.servicenowservices.com/*sysparm_view=case&sysparm_record_target*
+// @match        https://ironbow.servicenowservices.com/navpage.do
+// @icon         https://www.google.com/s2/favicons?domain=servicenowservices.com
+// @match        https://ironbow.servicenowservices.com/*sysparm_view*
+// @grant        none
+// ==/UserScript==
+
+(function() {
+    'use strict';
+var z = [...new Set( [...document.getElementsByClassName("form_action_button header  action_context btn btn-primary"), ...document.getElementsByClassName("form_action_button header  action_context btn btn-destructive"), ...document.getElementsByClassName("form_action_button  action_context btn btn-destructive"), ...document.getElementsByClassName("form_action_button  action_context btn btn-primary")])];
+console.log(z);
+        for(let i=0;i<z.length;i++)
+z[i].className="form_action_button header  action_context btn btn-default";
+    })();
