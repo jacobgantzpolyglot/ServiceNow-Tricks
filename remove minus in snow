@@ -1,0 +1,24 @@
+// ==UserScript==
+// @name         remove minus in snow
+// @namespace    http://tampermonkey.net/
+// @version      1.0
+// @author       You
+// @match        https://ironbow.servicenowservices.com/navpage.do
+// @match        https://ironbow.servicenowservices.com/nav_to.do*
+// @match        https://ironbow.servicenowservices.com/nav_to.do?uri=%2Fsn_customerservice_case.do*
+// @match        https://ironbow.servicenowservices.com/*
+// @icon         https://www.google.com/s2/favicons?domain=servicenowservices.com
+// @grant        none
+// ==/UserScript==
+
+(function() {
+    'use strict';
+  document.onreadystatechange = function () {
+     var x = document.getElementsByClassName("sn-widget-list-content sn-widget-list-content_static sn-widget-list-content_actions sn-widget-list-content_hidden        state-disable-animation btn btn-icon sn-widget-list-action icon-delete un-favorite favorite-list-overwrite--button");
+
+    while(x[0]) {
+         x[0].parentNode.removeChild(x[0]);
+    }
+  }
+    // Your code here...
+})();
